@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+ <style>
+  *{
+   padding:0;
+   margin:0;
+   
+  }
+  body{
+   background-color: #A9C9FF;
+   background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
+   background-repeat: no-repeat;
+   height:100vh;
+   color:white;
+
+  }
+  .container{
+   
+   border-radius: 10px;
+   width:300px;
+   margin:auto;
+   margin-top: 50px;
+   box-shadow: 0 10px 10px black;
+   overflow: hidden;
+  }
+  h1{
+   text-align: center;
+  }
+  li{
+   padding:10px;
+   margin:10px;
+   font-weight: bold;
+   font-size: 20px;
+   list-style: none;
+  }
+  span{
+   margin:auto;
+   text-align: center;
+   display:block;
+   font-size: 20px;
+   margin-top: 10px;
+   background:grey;
+   padding:10px;
+   font-weight: bold;
+  }
+  
+  
+ </style>
+</head>
+<body>
+     <h1>Double click to edit  the items </h1>
+     <div class="container"  onmouseout="savefruitlist()">
+      <ul><span>FRUITS LIST </span>
+
+       <li id="list1">APPLE</li>
+       <li id="list2">BANANA</li>
+       <li id="list3">ORANGE</li>
+       <li id="list4">GRAPES</li>
+       <li id="list5">CHIKU</li>
+      </ul>
+     </div>
+     <script>
+      
+      let cont=document.querySelector(".container");
+      cont.addEventListener("click",(e)=>{
+        console.log(e.target);
+        if(e.target){
+           e.target.setAttribute("contentEditable" , "true");
+        }
+      })
+      function savefruitlist(){
+             let items=document.getElementsByTagName("li");
+             // console.log(items[0].innerText);
+             let fruitarray=[];
+             for(let i in items){
+              fruitarray.push(items[i].innerText);
+             }
+             
+             // console.log(Object.values(items.innertext));
+              localStorage.setItem("fruitlist",JSON.stringify(fruitarray));
+      }
+     </script>
+</body>
+</html>
